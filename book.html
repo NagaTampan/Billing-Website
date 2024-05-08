@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stopwatch</title>
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3374&q=80');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.sidebar {
+  position: relative;
+  right: 150px;
+      width: 200px;
+      height: 100vh;
+      background-color: #000000ea;
+      padding-top: 20px;
+      transition: width 0.3s ease;
+    }
+
+    .sidebar:hover {
+      width: 250px;
+    }
+
+    .sidebar h2 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      padding: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #555;
+      color: #ffd700;
+    }
+.container {
+  padding: 1rem;
+  max-width: 900px; /* Adjusted width to accommodate three timers side by side */
+  text-align: center;
+  display: flex;
+  justify-content: space-between; /* Distribute space evenly between child elements */
+  position: relative;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.time,
+#meja2 .time,
+#meja3 .time {
+  padding: 1rem 0;
+  font-size: 2rem;
+  color: #f8f8f8;
+}
+
+h1,
+label,
+p,
+h4,
+span {
+  color: #f8f8f8;
+  position: relative;
+  font-size: 25px;
+  margin-bottom: 5px; /* Improved spacing */
+  
+}
+h3{
+  color: #f8f8f8;
+  position: relative;
+  font-size: 25px;
+  margin-bottom: 5px; /* Improved spacing */
+}
+h2{
+  font-size: 25px;
+  color: #f8f8f8;
+  margin-bottom: 12px;
+}
+button {
+  padding: 0.6rem 1.2rem;
+  
+  margin: 0.1rem;
+  border-radius: 8px;
+  border: 1px solid #f8f8f8;
+  background-color: transparent;
+  color: #f8f8f8;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Additional styling for improved visibility of stopwatch digits */
+#minutes,
+#seconds,
+#tens,
+#meja2 #minutes2,
+#meja2 #seconds2,
+#meja2 #tens2,
+#meja3 #minutes3,
+#meja3 #seconds3,
+#meja3 #tens3 {
+  display: inline-block;
+  width: 2em;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.2em;
+  margin: 0 0.5em; /* Adjusted margin to add space between timers */
+  border-radius: 4px;
+  color: #f8f8f8;
+}
+
+input {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+}
+
+#totalHarga1,
+#totalHarga2,
+#totalHarga3 {
+  display: block;
+  margin-top: 10px;
+  color: #f8f8f8;
+}
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>A+ Billiard</h2>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="book.html">Booking</a></li>
+      <li><a href="users.html">Users</a></li>
+      <!-- Add more sections or links as needed -->
+    </ul>
+  </div>
+  <div class="container">
+    <div class="timer-container">
+      <h1>Meja 1</h1>
+      <p class="time">
+        <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="tens">00</span>
+      </p>
+      <label for="username">Nama Pengguna</label>
+      <input type="text" id="username" placeholder="Nama Pengguna">
+      <label for="harga">Harga / 5 Menit</label>
+      <input type="number" id="harga" placeholder="Harga / 5 Menit">
+      <h3>Total Harga :</h3>
+         <h2 id="totalHarga">Rp. 00.00</h2>
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+  <div class="timer-container" id="meja2">
+    <h1>Meja 2</h1>
+    <!-- Add the same content structure as Meja 1 -->
+    <p class="time">
+      <span id="minutes2">00</span>:<span id="seconds2">00</span>:<span id="tens2">00</span>
+    </p>
+    <label for="username2">Nama Pengguna</label>
+    <input type="text" id="username2" placeholder="Nama Pengguna">
+    <label for="harga2">Harga / 5 Menit</label>
+    <input type="number" id="harga2" placeholder="Harga / 5 Menit">
+    <h3>Total Harga :</h3>
+    <span id="totalHarga2">Rp. 00.00</span>
+    <button id="start2">Start</button>
+    <button id="stop2">Stop</button>
+    <button id="reset2">Reset</button>
+  </div>
+  <div class="timer-container" id="meja3">
+    <h1>Meja 3</h1>
+    <!-- Add the same content structure as Meja 1 -->
+    <p class="time">
+      <span id="minutes3">00</span>:<span id="seconds3">00</span>:<span id="tens3">00</span>
+    </p>
+    <label for="username3">Nama Pengguna</label>
+    <input type="text" id="username3" placeholder="Nama Pengguna">
+    <label for="harga3">Harga / 5 Menit</label>
+    <input type="number" id="harga3" placeholder="Harga / 5 Menit">
+    <h3>Total Harga :</h3>
+    <span id="totalHarga3">Rp. 00.00</span>
+    <button id="start3">Start</button>
+    <button id="stop3">Stop</button>
+    <button id="reset3">Reset</button>
+  </div>
+</div>
+</div>  
+  <script>
+  window.onload = function () {
+      const tables = ['', '2', '3'];
+
+      tables.forEach((table) => {
+        let minutes = 0;
+        let seconds = 0;
+        let tens = 0;
+        let appendMinutes = document.querySelector(`#minutes${table}`);
+        let appendTens = document.querySelector(`#tens${table}`);
+        let appendSeconds = document.querySelector(`#seconds${table}`);
+        let startBtn = document.querySelector(`#start${table}`);
+        let stopBtn = document.querySelector(`#stop${table}`);
+        let resetBtn = document.querySelector(`#reset${table}`);
+        let totalHargaDisplay = document.querySelector(`#totalHarga${table}`);
+        let Interval;
+
+        // Additional variables
+        let hargaPerMenit = 0;
+        let usernameInput = document.querySelector(`#username${table}`);
+        let hargaInput = document.querySelector(`#harga${table}`);
+
+        const updateLocalStorage = () => {
+          localStorage.setItem(`billiardTimer${table}`, JSON.stringify({ minutes, seconds, tens }));
+        };
+
+        const loadFromLocalStorage = () => {
+          const timerData = JSON.parse(localStorage.getItem(`billiardTimer${table}`)) || {};
+          minutes = timerData.minutes || 0;
+          seconds = timerData.seconds || 0;
+          tens = timerData.tens || 0;
+          updateDisplay();
+          updateTotalHarga();
+        };
+
+        const updateDisplay = () => {
+          appendMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+          appendSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+          appendTens.textContent = tens < 10 ? '0' + tens : tens;
+        };
+
+        const updateTotalHarga = () => {
+          const totalMinutes = minutes + seconds / 60 + tens / 6000;
+          const totalHarga = totalMinutes * (hargaPerMenit / 5);
+          totalHargaDisplay.textContent = 'Rp. ' + totalHarga.toFixed(2);
+        };
+
+        const startTimer = () => {
+          tens++;
+          if (tens > 99) {
+            seconds++;
+            tens = 0;
+          }
+          if (seconds > 59) {
+            minutes++;
+            seconds = 0;
+          }
+          updateLocalStorage();
+          updateDisplay();
+          updateTotalHarga();
+        };
+
+        startBtn.onclick = () => {
+          clearInterval(Interval);
+          Interval = setInterval(startTimer, 10);
+        };
+
+        stopBtn.onclick = () => {
+          clearInterval(Interval);
+          updateLocalStorage();
+        };
+
+        resetBtn.onclick = () => {
+          clearInterval(Interval);
+          tens = 0;
+          seconds = 0;
+          minutes = 0;
+          updateLocalStorage();
+          updateDisplay();
+          updateTotalHarga();
+        };
+
+        loadFromLocalStorage();
+
+        hargaInput.addEventListener('input', function () {
+          hargaPerMenit = parseFloat(hargaInput.value) || 0;
+          updateTotalHarga();
+        });
+      });
+    };
+
+  </script>
+</body>
+</html>
